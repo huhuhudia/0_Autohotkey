@@ -1,0 +1,29 @@
+1.MouseEx.ahk鼠标点击相关函数
+#include %A_ScriptDir%\lib\MouseEx.ahk
+
+	1.Cli_Return(cli_x, cli_y, click_count := 1)
+		点击相对全屏坐标，cli_x，cli_y
+
+2.ClipboardEx.ahk剪切板相关函数	
+#include %A_ScriptDir%\lib\ClipboardEx.ahk
+
+	clip_change(strToClip)
+		给剪切板赋值不执行黏贴，clipboard为全局函数
+
+	clip_strToV(strToClip)
+		给剪切板赋值并发送ctrl+v
+
+	var := % clip_got()
+		发送ctrl+c并返回剪切板的值，功能类似inputbox，需要当前状态在编辑框下
+
+	line_HEadd(strHead, strEnd)
+		send发送{end}后{shift}+{home}选中某行，复制，在首位添加字符串，再进行黏贴
+		
+	word_HEadd(strHead, strEnd)
+		send发送{shift}+{ctrl}+{left}选中一个单词，其余同上
+
+3.资源管理器下被选择文件返回路径值
+	sel := Explorer_GetSelected()	;返回选中文件长路径
+	path := Explorer_GetPath()  	;返回选中文件所在文件夹长路径
+        all := Explorer_GetAll()  	;返回该文件所在文件夹所有文件
+            
