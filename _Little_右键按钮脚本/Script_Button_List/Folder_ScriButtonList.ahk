@@ -1,1 +1,0 @@
-﻿run, % a_SCRIPTDIR
