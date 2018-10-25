@@ -74,6 +74,7 @@ GetLi(filLP, linenum := 1) { ;获取文件某行字符串，无返回0，默认�
 		return 0
 }
 
+
 FlLiToList(ByRef array_read, filelongpath) {	;将true行数内容写入列表，返回
 	arraylenght := 0
 	loop, read, % filelongpath
@@ -87,6 +88,7 @@ FlLiToList(ByRef array_read, filelongpath) {	;将true行数内容写入列表，
 			}
 			else
 				arraylenght += 1
+			
 			array_read[arraylenght - 1] := A_LoopReadLine
 		}
 		
