@@ -191,7 +191,7 @@ GuiEvLab_button_ChosLDPath:
 					break
 			}
 		}
-		FileAppend, %LDpath_x%, % LDFileLongPath 
+		FileAppend, % LDpath_x, % LDFileLongPath 
 	}
 	return
 
@@ -257,15 +257,19 @@ FileIndex(FoderName, FileEX) {
 	return % NumofFile
 }
 
-
-Gui_CLDPathEdit() { ;雷电路径Edit控件
+;雷电路径Edit控件
+Gui_CLDPathEdit() {
+	;LDFileLongPath为雷电模拟器的路径
 	global LDFileLongPath := %  A_ScriptDir "\LD_path.path"	
+	
+	;若存在文件
 	if fileexist(LDFileLongPath) {
 		FileRead, LDpath, % LDFileLongPath		;读取路径文件文件内容
 		guicontrol, , GUIEdit_LeiPath, % LDpath	;写入GUIEdit_LeiPath控件
 	}
-	else {	;若无该文件
-		MsgBox, 4100, 未设置模拟器路径, % "请确认您已安装雷神模拟器！`n是否选择雷神模拟器文件夹？", 5
+	;若无该文件
+	else {	
+		MsgBox, 4100, % "未设置模拟器路径", % "请确认您已安装雷神模拟器！`n是否选择雷神模拟器文件夹？", 5
 		IfMsgBox, Yes	;执行GuiEvLab_button_ChosLDPath:标签，设置雷电路径
 			gosub, GuiEvLab_button_ChosLDPath
 	}

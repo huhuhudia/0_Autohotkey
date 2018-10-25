@@ -4,41 +4,45 @@
 
 if not fileexist(A_SCRIPTDIR "\Script_Button_List")
 	FileCreateDir, % A_SCRIPTDIR "\Script_Button_List"
-
 return
 
-!r::Reload
-!e::Edit
+!r::
+	Reload
+
+!e::
+	Edit
+	return
+
 !Esc::
-Send,!{f4}
-return
+	Send,!{f4}
+	return
 
 
 !WheelUp::
-WinMaximize, A
-return
+	WinMaximize, A
+	return
 
 !WheelDown::
-WinRestore, A
-return
+	WinRestore , A
+	return
 
 !RButton::
-WinMinimize, A
-return
+	WinMinimize, A
+	return
 
 
 ^rButton::
 	;ctrl + 右键弹出控制界面
-	CoordMode, mouse, screen
+	CoordMode, % "mouse", % "screen"
 	MouseGetPos, xx, yy
 
 	soh := !soh
 	if soh {
-		gosub, 创建按钮控件
-		gui, show, x%xx% y%yy%
+		gosub, % "创建按钮控件"
+		gui, show, % "x" xx "y" yy
 	}		
 	else
-		gui, Destroy
+		gui, % "Destroy"
 return
 
 
@@ -59,18 +63,18 @@ loop {
 	if (func%a_INDEX%) {
 		nowlable := % func%a_INDEX%
 		;gui,add, BUTTON, % "g" nowlable, % nowlable
-		gui,add, BUTTON, g按钮, % nowlable
+		gui,add, BUTTON, % "g按钮", % nowlable
 	}
  
 	else
 		break
 }
-Gui, -SysMenu -Caption +AlwaysOnTop
+Gui, % "-SysMenu -Caption +AlwaysOnTop"
 return
 
 按钮:
 	soh := 
-	gui, hide
+	gui, % "hide"
 	Run, % Array_File[A_GuiControl] 
 return
 

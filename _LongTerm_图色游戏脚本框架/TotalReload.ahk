@@ -1,6 +1,6 @@
-﻿ProExit("AutoHotkey.exe")
-run, % a_workingdir "\MainControl-主控端.ahk"
-ExitApp
+﻿	ProExit("AutoHotkey.exe")
+	run, % a_workingdir "\MainControl-主控端.ahk"
+	ExitApp
 
 
 ProExit(proName) {	;关闭所有同名进程
