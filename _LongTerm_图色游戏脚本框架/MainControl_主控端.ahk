@@ -69,10 +69,10 @@ accFolder_Cre(folderList) {
 	for i in folderList
 	{
 		thisfilename := % folderList[i]
-		IfNotExist, % A_scriptdir "\" thisfilename
-			FileCreateDir, % A_scriptdir "\" thisfilename
+		IfNotExist, % A_Scriptdir "\" thisfilename
+			FileCreateDir, % A_Scriptdir "\" thisfilename
 		loop {
-			IfExist, % A_scriptdir "\" thisfilename
+			IfExist, % A_Scriptdir "\" thisfilename
 				break
 		}
 	}
@@ -118,40 +118,40 @@ Gui_Cre() {	;创建GUI控件
 	;--------------------------------------------------
 	;1.说明类文本控件
 	;--------------------------------------------------	
-	Gui, Add, Text, x16  y7   w120 h20 , [游戏名]脚本列表：
-	Gui, Add, Text, x16  y207 w80  h20 , 模拟器路径：
-	Gui, Add, Text, x156 y17  w60  h20 , 账号数量：
-	Gui, Add, Text, x16  y237 w130 h15 , 注1: 双击列表脚本启动
-	Gui, Add, Text, x166 y237 w130 h15 , 注2: Alt+Esc关闭脚本
-	Gui, Add, Text, x16  y257 w140 h20 , 注3: 确保ahk版本为32位
-	Gui, Add, Text, x166 y122 w60  h20 , 账号总数：
-	Gui, Add, Text, x166 y102 w50  h20 , 变身号：
-	Gui, Add, Text, x166 y42  w50  h20 , 主线号：
-	Gui, Add, Text, x166 y62  w50  h20 , 日常号：
-	Gui, Add, Text, x166 y82  w50  h20 , 成品号：
+	Gui, Add, Text, % "x16  y7   w120 h20" , % "[游戏名]脚本列表："
+	Gui, Add, Text, % "x16  y207 w80  h20" , % "模拟器路径："
+	Gui, Add, Text, % "x156 y17  w60  h20" , % "账号数量："
+	Gui, Add, Text, % "x16  y237 w130 h15" , % "注1: 双击列表脚本启动"
+	Gui, Add, Text, % "x166 y237 w130 h15" , % "注2: Alt+Esc关闭脚本"
+	Gui, Add, Text, % "x16  y257 w140 h20" , % "注3: 确保ahk版本为32位"
+	Gui, Add, Text, % "x166 y122 w60  h20" , % "账号总数："
+	Gui, Add, Text, % "x166 y102 w50  h20" , % "变身号："
+	Gui, Add, Text, % "x166 y42  w50  h20" , % "主线号："
+	Gui, Add, Text, % "x166 y62  w50  h20" , % "日常号："
+	Gui, Add, Text, % "x166 y82  w50  h20" , % "成品号："
 	;Gui, Add, Text, x156 y152 w140 h20 , 当前脚本最后修改日期：				;对应下方
 	
 	;--------------------------------------------------
 	;2.参数变化类型控件
 	;--------------------------------------------------
-	Gui, Add, Edit, vGUIEdit_LeiPath      x96  y207 w180 h20 ReadOnly		, None		;模拟器路径
-	Gui, Add, Text, vGUITex_AccNum_All    x226 y122 w40  h20				, 0			;账号总数
-	Gui, Add, Text, vGUITex_AccNum_ZX     x216 y42  w40  h20				, 0			;主线号数
-	Gui, Add, Text, vGUITex_AccNum_RC     x216 y62  w40  h20				, 0			;日常号数
-	Gui, Add, Text, vGUITex_AccNum_CP     x216 y82  w40  h20				, 0			;成品号数
-	Gui, Add, Text, vGUITex_AccNum_BS     x216 y102 w40  h20				, 0			;变身号数
+	Gui, Add, Edit, % "vGUIEdit_LeiPath      x96  y207 w180 h20 ReadOnly"	, % "None"	;模拟器路径
+	Gui, Add, Text, % "vGUITex_AccNum_All    x226 y122 w40  h20"			, 0			;账号总数
+	Gui, Add, Text, % "vGUITex_AccNum_ZX     x216 y42  w40  h20"			, 0			;主线号数
+	Gui, Add, Text, % "vGUITex_AccNum_RC     x216 y62  w40  h20"			, 0			;日常号数
+	Gui, Add, Text, % "vGUITex_AccNum_CP     x216 y82  w40  h20"			, 0			;成品号数
+	Gui, Add, Text, % "vGUITex_AccNum_BS     x216 y102 w40  h20"			, 0			;变身号数
 	;Gui, Add, Text, vGUITex_MDFCTionDate  x166 y172 w90  h20				, Date Modified	;脚本最后修改日期.取子脚本文件第二位
 	
 	;--------------------------------------------------
 	;3.功能类控件
 	;--------------------------------------------------	
-	Gui, Add, ListBox,	gGuiEvLab_list_DoubleCli	vGUIList_SubScriFil 		x16  y27  w120 h180 Choose1	, None			;列表
-	Gui, Add, Button, 	gGuiEvLab_button_ChosLDPath								x276 y207 w20  h20 			, +				;路径改变按钮
-	Gui, Add, Button, 	gGuiEvLab_button_ZCDM									x166 y257 w130 h20 			, 注册大漠插件	;注册大漠插件按钮
+	Gui, Add, ListBox, % "	gGuiEvLab_list_DoubleCli	vGUIList_SubScriFil 		x16  y27  w120 h180 Choose1"	, % "None"			;列表
+	Gui, Add, Button , % "	gGuiEvLab_button_ChosLDPath								x276 y207 w20  h20" 			, % "+"				;路径改变按钮
+	Gui, Add, Button , % "	gGuiEvLab_button_ZCDM									x166 y257 w130 h20" 			, % "注册大漠插件"	;注册大漠插件按钮
 
 	
-	Gui, +AlwaysOnTop
-	Gui, Show, x1580 y666 h292 w315, [游戏名]脚本主控端
+	Gui, % "+AlwaysOnTop"
+	Gui, Show, % "x1580 y666 h292 w315", % "[游戏名]脚本主控端"
 }
 
 ;---------------------
@@ -178,7 +178,7 @@ GuiEvLab_button_ChosLDPath:
 			return
 	}
 	else
-		FileSelectFolder, LDpath_x, *%A_workingdir%
+		FileSelectFolder, LDpath_x, % "*" A_workingdir
 
 
 	if (LDpath_x) {	;若选项有效
@@ -200,12 +200,13 @@ GuiEvLab_button_ChosLDPath:
 ;-----------------------------------
 GuiEvLab_button_ZCDM: 
 	SetWorkingDir %A_ScriptDir%\DM_plugin
-	run, 注册大漠插件到系统.bat
+	run, % "注册大漠插件到系统.bat"
 	return
 
 ;●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
 
-Gui_FirstGot() {	;初次完善GUI控件
+;初次完善GUI控件
+Gui_FirstGot() {	
 	Gui_GotList()			;1完善控件 列表-子脚本文件夹名称
 	Gui_CAccText()			;2改变账号数量相关控件
 	Gui_CLDPathEdit()		;3获取编辑控件路径参数
@@ -228,8 +229,9 @@ Gui_GotList() {
 	
 }
 
+;完善控件 文本-账号数量-主线
 Gui_CAccText() {
-	global Num_Acc1 := % Gui_GotText("Acc0_主线" , "GUITex_AccNum_ZX")		;完善控件 文本-账号数量-主线
+	global Num_Acc1 := % Gui_GotText("Acc0_主线" , "GUITex_AccNum_ZX")			;完善控件 文本-账号数量-主线
 	global Num_Acc2 := % Gui_GotText("Acc1_日常小号" , "GUITex_AccNum_RC")		;~
 	global Num_Acc3 := % Gui_GotText("Acc2_日常成号" , "GUITex_AccNum_CP")		;~	
 	global Num_Acc4 := % Gui_GotText("Acc3_日常变身" , "GUITex_AccNum_BS")		;~
@@ -247,13 +249,14 @@ Gui_GotText(FoderName, controlName, FileEX := "acc") { ;完善文本，账号数
 	return % Num_Acc
 }
 
-
-FileIndex(FoderName, FileEX) { ;获取同后缀文件，递归文件夹
+;获取同后缀文件，递归文件夹
+FileIndex(FoderName, FileEX) { 
 	NumofFile := 0
 	loop, % A_ScriptDir "\" FoderName "\*." FileEX, 0, 1
 		NumofFile := A_Index
 	return % NumofFile
 }
+
 
 Gui_CLDPathEdit() { ;雷电路径Edit控件
 	global LDFileLongPath := %  A_ScriptDir "\LD_path.path"	
@@ -262,7 +265,7 @@ Gui_CLDPathEdit() { ;雷电路径Edit控件
 		guicontrol, , GUIEdit_LeiPath, % LDpath	;写入GUIEdit_LeiPath控件
 	}
 	else {	;若无该文件
-		MsgBox, 4100, 未设置模拟器路径, 请确认您已安装雷神模拟器！`n是否选择雷神模拟器文件夹？, 5
+		MsgBox, 4100, 未设置模拟器路径, % "请确认您已安装雷神模拟器！`n是否选择雷神模拟器文件夹？", 5
 		IfMsgBox, Yes	;执行GuiEvLab_button_ChosLDPath:标签，设置雷电路径
 			gosub, GuiEvLab_button_ChosLDPath
 	}
