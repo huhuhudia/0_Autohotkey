@@ -41,9 +41,12 @@ return
 		gosub, % "创建按钮控件"
 		gui, show, % "x" xx "y" yy
 	}		
-	else
+	else {
 		gui, % "Destroy"
+	}
 return
+
+
 
 
 
@@ -77,4 +80,10 @@ return
 	gui, % "hide"
 	Run, % Array_File[A_GuiControl] 
 return
+
+#If WINEXIST("Script_Button.ahk")
+RButton::
+	gui, % "Destroy"
+	soh := !soh
+	return
 
