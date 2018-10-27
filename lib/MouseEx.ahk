@@ -5,3 +5,12 @@ Cli_Return(cli_x, cli_y, click_count := 1) {
 	MouseClick, L, % cli_x, % cli_y, % click_count, 0
 	MouseMove, % xx, % yy, 0
 }
+
+MMove(pos_x, pos_y) {
+	MouseMove, %pos_x%, %pos_y%, 0
+	}
+
+Mcli(pos_x, pos_y, slept) {
+	MouseClick, L, %pos_x%, %pos_y%, 1, 0
+	sleep % slept
+	}
