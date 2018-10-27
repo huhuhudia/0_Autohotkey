@@ -6,7 +6,6 @@
 		-- getSendText()	编码设定获取文本途径
 		-- Cli_Return可酌情省略
 */
-
 ;首要声明
 #SingleInstance force
 
@@ -40,8 +39,6 @@ f1::
 ;ctrl+右键为主要功能流程
 ^$RButton::
 	getSendText()										;1获取文本途径
-	
-	ControlSend,  %controlS%, ^v`r, %TI%
 	;ControlSendRaw,  %controlS%, %Clipboard%`r, %TI%	;2发送纯文本
 	Cli_Return(1120, 617)								;3点击取消扭返回
 	return
