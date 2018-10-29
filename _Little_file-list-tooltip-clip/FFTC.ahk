@@ -10,7 +10,6 @@
 	global toolList						;所生成toolist内容
 	global FocusLine := 0				;关注焦点
 	
-	
 	CoordMode, tooltip, screen
 	SetTimer, tooltip, 100
 	

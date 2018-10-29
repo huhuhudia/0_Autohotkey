@@ -6,19 +6,28 @@
 		-- getSendText()	编码设定获取文本途径
 		-- Cli_Return可酌情省略
 */
-
-
+;首要声明
 #SingleInstance force
 
-	;首要声明
+
 	TI := 						;激活窗口标题
 	xx := 0 , yy := 0			;被激活窗口的坐标，用于tooltip
 	controlS := % "Edit1"		;设定发送窗口的控件名称
-	
+
 	;创建循环提示
 	SetTimer, TOOLTIPX, 100		;循环信息提示
-	return
-
+return
+	
+	
+;获取文本途径	
+getSendText() {
+	Send, {rbutton} 
+	sleep 50
+	Send, {down 6}
+	Send, {enter}
+	Sleep 50
+	clip_got()	
+}
 
 ;设置待发送窗口，可作程序自动化
 f1::	
@@ -30,23 +39,13 @@ f1::
 ;ctrl+右键为主要功能流程
 ^$RButton::
 	getSendText()										;1获取文本途径
-	
-	ControlSend,  %controlS%, ^v`r, %TI%
 	;ControlSendRaw,  %controlS%, %Clipboard%`r, %TI%	;2发送纯文本
 	Cli_Return(1120, 617)								;3点击取消扭返回
 	return
 
 
 	
-;获取文本途径	
-getSendText() {
-	Send, {rbutton} 
-	sleep 50
-	Send, {down 6}
-	Send, {enter}
-	Sleep 50
-	clip_got()	
-}
+ 
 
 
 ;点击相对全屏某处后返回

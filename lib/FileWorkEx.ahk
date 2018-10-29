@@ -3,7 +3,7 @@
 Cre_EpFi(filLP) { ;创建空白  文件  ,若存在文件，不动作
 	IfNotExist, % filLP
 	{
-		FileAppend, , % filLP
+		FileAppend, , % filLP, UTF-8
 		Loop {
 			IfExist % filLP
 				break

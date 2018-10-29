@@ -21,7 +21,7 @@ word_HEadd(head_a, end_a)
 关于剪切板的函数
 */
 
-;给剪切板赋值并黏贴
+;~ ;给剪切板赋值并黏贴
 clip_in(to_clipboard)
 {
 	clip_change(to_clipboard)
