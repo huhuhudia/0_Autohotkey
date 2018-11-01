@@ -1,5 +1,4 @@
 ﻿
-
 Line_HEadd(head_a, end_a)
 {
 	Clipboard := 
