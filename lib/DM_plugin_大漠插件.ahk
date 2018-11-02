@@ -12,9 +12,7 @@ dm.UseDict(1)		;设定引用字典，引用前需声明字典文件
 DmStrSerch := dm.Ocr(8,267,157,350, "", 0.9)	; 1-4 范围 5 为颜色范围 6为模糊匹配程度，值越低速度越慢
 */
 
-global dm := ComObjCreate( "dm.dmsoft" )	;创建大漠对象
-global x := ComVar()
-global y := ComVar()
+
 
 ;——— 大漠必备函数 用以指针坐标输出 ————
 ComVar(Type=0xC) {

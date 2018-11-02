@@ -37,6 +37,7 @@ wgPName		(title,			ECT := "")		【程序名称】
 wgLP		(title,			ECT := "")		【程序对应长路径】
 
 。。。基于鼠标悬停位置的获取
+
 msID()		返回ahk_id 
 msTitle()	
 msClass()	

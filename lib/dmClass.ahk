@@ -1,52 +1,18 @@
 ﻿
-
+global dm := ComObjCreate( "dm.dmsoft" )
 global __x := ComVar()
 global __y := ComVar()
 
 /*
-一.大漠前期工作流程：
+大漠前期工作流程：
 	1.利用大漠综合工具确认目标工作区域，取窗口句柄
-	2.枚举取图，验证图色及字典搜索可行性
-	3.截图测试
-	4.试验鼠标模式，后台点击反应
-	5.试验键盘输出模式，后台控件字符输出反应
-
-2.设定大漠图片及搜字文件路径
-dm.SetPath(A_ScriptDir "\dmpic\")
-
-
-大漠字典搜索方法
-dm.SetDict( 1, "zd.txt")	;设定大漠字典
-dm.UseDict(1)		;设定引用字典，引用前需声明字典文件
-DmStrSerch := dm.Ocr(8,267,157,350, "", 0.9)	; 1-4 范围 5 为颜色范围 6为模糊匹配程度，值越低速度越慢
-
+	2.枚举取图，验证图色
+	3.试验鼠标模式，后台点击反应
+	4.试验键盘输出模式，后台控件反应
 */
 
-gdmWHD() {	;获取大漠的窗口句柄控件文本
-	ControlGetText, dmedithd, Edit45, ahk_exe 大漠综合工具.exe
-	return % dmedithd
-}
-gdmCRgLs() {	;获取大漠窗口选择范围的包括宽高的6位坐标参数列表
-	dh = ,
-	kh = (
-	kh2 = )
-	HL := []
-	ControlGetText, chosrg, Edit47, ahk_exe 大漠综合工具.exe
-	if !chosrg	;为空时返回0
-		return 0
-	StringReplace, chosrg, chosrg, % dh , o, 1
-	StringReplace, chosrg, chosrg, % kh , % "", 1
-	StringReplace, chosrg, chosrg, % kh2 , % "", 1
-	StringReplace, chosrg, chosrg, 宽高 , % "", 1
-	MsgBox, % chosrg
-	Loop, Parse, chosrg, o
-		HL.Insert(A_LoopField)	
-	return % HL
-}
 
-setdmdir(dmpicanddir) {
-	dm.SetPath(dmpicanddir)
-}
+
 
 Class dmClass {
 	dispmode := ["gdi", "gdi2", "dx2", "dx3"]
