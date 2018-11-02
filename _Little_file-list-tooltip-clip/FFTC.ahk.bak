@@ -7,7 +7,7 @@ CoordMode, tooltip, screen
 	
 	global BLK := % "      "	;未选中的前置字符串
 	global CHO := % "> "		;选中的前置字符串
-	;~ global toolList				;所生成toolist内容
+	global toolList				;所生成toolist内容
 	
 	global FocusLine := 1		;初始关注焦点
 	global linenum := 3	;设定显示行数,决定焦点位置
