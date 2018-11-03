@@ -75,24 +75,15 @@ GetLi(filLP, linenum := 1) { ;获取文件某行字符串，无返回0，默认�
 }
 
 
-FlLiToList(ByRef array_read, filelongpath) {	;将true行数内容写入列表，返回
-	arraylenght := 0
+FlLiToList(filelongpath) {	;将true行数内容写入列表，返回
+	Array1 := []
 	loop, read, % filelongpath
 	{
 		if A_LoopReadLine
-		{
-			if !arraylenght
-			{
-				arraylenght := 1
-				array_read := []
-			}
-			else
-				arraylenght += 1
-			
-			array_read[arraylenght - 1] := A_LoopReadLine
-		}
-		
-		
+			Array1.Insert(A_LoopReadLine)
 	}
-	return %arraylenght%
+	if !Array1.MaxIndex()
+		return 0
+	else
+		return % Array1
 }
