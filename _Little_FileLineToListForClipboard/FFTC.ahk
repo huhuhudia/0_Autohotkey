@@ -56,7 +56,26 @@ maketoollist() {	;设定tooltip排版
 		
 	}
 	;2.showway以上或以下小于裁剪数量时，分别增量反方向的行数
-	else if ((FocusLine < showway) or (FocusLine > (!Mod(linenum, 2) ? (cliplist.MaxIndex() - showway) : (cliplist.MaxIndex() - showway - 1)))) {
+	else if (FocusLine < showway) {	;focusline小于showway
+			Fulllist := []
+			upwaynum := % showway - FocusLine	;显示于顶上的总行数
+			upstartpoint := % cliplist.MaxIndex() + 1  ;顶上起始行数
+			loop %upstartpoint% {
+				if A_index = 1 
+					rtTex := % BLK cliplist[upstartpoint]
+				else 
+					rtTex := % rtTex "`n" BLK cliplist[upstartpoint]
+				if ((upstartpoint + A_index) =  cliplist.MaxIndex())
+					break
+			}
+			
+			
+	}
+		
+
+
+	else if (FocusLine > (!Mod(linenum, 2) ? (cliplist.MaxIndex() - showway) : (cliplist.MaxIndex() - showway - 1))) {
+		
 		return % "未了"
 	}
 	;3.正常显示方式，
