@@ -5,17 +5,15 @@ CoordMode, tooltip, screen
 
 	;testFilepath = % A_ScriptDir "\" lineList.txt	;测试文件名称
 	testFilepath := % A_ScriptFullPath	;*****以本脚本内容为例，可更改
-	
+
 	global linenum := 20	;*****设定显示行数,决定焦点位置，可以更改
-	
-	
-	
+
 	global cliplist := FlLiToList(testFilepath)	;创建粘粘列表
 	global maxIlength := StrLen(cliplist.MaxIndex())	;列表极限数量字符长度
 	global FocusLine := 1		;初始关注焦点
-	
+
 	global showway := % (!Mod(linenum, 2)) ? (Floor(linenum / 2)) : Ceil(linenum / 2)	;focusline显示位置
-	
+
 	infofresh := 80		;信息刷新时间间隔
 	keyfocusgetsleep := 20	;按键切换功能休眠时间
 return
@@ -40,7 +38,7 @@ WheelUp::
 	clip_change(cliptex)	;将焦点文本赋值于剪切板
 	sleep % keyfocusgetsleep
 return
-	
+
 ;ctrl + 下键 焦点后移
 WheelDown::
 	FocusLine += 1	;关注焦点下移，对应序号往后
@@ -95,7 +93,7 @@ maketoollist() {	;设定tooltip排版
 			;rtTex =tooltip显示输出的文本
 			upwaynum := % showway - FocusLine + 1	;显示于顶上的总行数
 			upstartpoint := % cliplist.MaxIndex() - upwaynum + 1 ;顶上起始行数
-			
+
 		loop, % upwaynum + 1				;②.创建列表位置为1 前的行
 		{
 			foc := % upstartpoint + A_index
@@ -106,7 +104,7 @@ maketoollist() {	;设定tooltip排版
 			if (foc =  cliplist.MaxIndex())	;复制至表尾最后一行
 				break
 		}
-		
+
 		loop % (linenum - upwaynum + 1)		;①.创建列表位置为1 后的行
 		{
 			foc := a_INDEX
@@ -116,7 +114,6 @@ maketoollist() {	;设定tooltip排版
 				rtTex := % rtTex "`n" preBLK(foc) cliplist[foc]
 		}
 	}
-		
 
 
 	else if (FocusLine > (!Mod(linenum, 2) ? (cliplist.MaxIndex() - showway) : (cliplist.MaxIndex() - showway))) {
@@ -133,7 +130,7 @@ maketoollist() {	;设定tooltip排版
 			if (foc) = cliplist.MaxIndex()
 				break
 		}
-		
+
 		downtopnum := % linenum - (cliplist.MaxIndex() - (focusline - showway))
 		Loop, % downtopnum
 		{
