@@ -7,7 +7,7 @@ CoordMode, tooltip, screen
 	global cliplist := FlLiToList(A_ScriptDir "\" testFileName)	;创建粘粘列表
 	global maxIlength := StrLen(cliplist.MaxIndex())	;列表极限数量字符长度
 	global FocusLine := 1		;初始关注焦点
-	global linenum := 5	;设定显示行数,决定焦点位置，可以更改
+	global linenum := 20	;设定显示行数,决定焦点位置，可以更改
 	global showway := % (!Mod(linenum, 2)) ? (Floor(linenum / 2)) : Ceil(linenum / 2)	;focusline显示位置
 	
 	infofresh := 80		;信息刷新时间间隔
@@ -30,10 +30,6 @@ WheelUp::
 	FocusLine -= 1	;关注焦点上移，对应序号往前
 	if (FocusLine <= 0)
 		FocusLine := cliplist.MaxIndex() ;至底部
-	
-	
-	
-	
 	cliptex := % cliplist[FocusLine]	;获取焦点文本，可将列表设置为文件名
 	clip_change(cliptex)	;将焦点文本赋值于剪切板
 	sleep % keyfocusgetsleep
@@ -41,11 +37,10 @@ return
 	
 ;ctrl + 下键 焦点后移
 WheelDown::
-
 	FocusLine += 1	;关注焦点下移，对应序号往后
 	if (FocusLine >= cliplist.MaxIndex())
 		FocusLine := 1 ;至顶部
-	
+
 	cliptex := % cliplist[FocusLine]
 	clip_change(cliptex)
 	sleep % keyfocusgetsleep
@@ -64,13 +59,13 @@ tooltip:
 	show2 = 2
 	if	cliplist.MaxIndex()	{ ;若列表不为空，显示排版
 		;若上一次显示的内容与此次 相同，不显示ToolTip
-		ToolTip, % tooltex, 1518, 50
+		ToolTip, % tooltex, 0, 0
 		WinSet, TransColor, Color [N], WinTitle
 
 		extext := tooltex
 	}
 	else
-		ToolTip, [黏贴列表为空], 1518, 50
+		ToolTip, [黏贴列表为空], 0, 0
 return
 
 maketoollist() {	;设定tooltip排版
@@ -87,7 +82,6 @@ maketoollist() {	;设定tooltip排版
 			else if (i != 1) && (i = FocusLine)
 				rtTex := % rtTex "`n" preCHO(foc) cliplist[foc]
 		}
-		
 	}
 	;2.showway以上或以下小于裁剪数量时，分别增量反方向的行数
 	else if (FocusLine < showway) {	;focusline小于showway
@@ -170,7 +164,7 @@ preCHO(inchar) {	;前置显示选中
 	mid := % "> " 
 	gotforlen := maxIlength - StrLen(inchar)
 	Loop %gotforlen% 
-		Bfor := % Bfor "o"
+		Bfor := % Bfor "0"
 	return % Bfor inchar " |" mid 	
 }
 
@@ -178,7 +172,7 @@ preBLK(inchar) {	;前置显示空白
 	mid := % "       "
 	gotforlen := maxIlength - StrLen(inchar)
 	Loop %gotforlen% 
-		Bfor := % Bfor "o"
+		Bfor := % Bfor "0"
 	return % Bfor inchar " |" mid 	
 }
 
