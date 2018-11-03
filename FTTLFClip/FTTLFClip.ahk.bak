@@ -4,7 +4,7 @@
 CoordMode, tooltip, screen
 
 	;testFilepath = % A_ScriptDir "\" lineList.txt	;测试文件名称
-	testFilepath := % A_ScriptFullPath	;*****以本脚本内容为例，可更改
+	testFileName := % A_ScriptFullPath	;*****以本脚本内容为例，可更改
 	
 	global linenum := 20	;*****设定显示行数,决定焦点位置，可以更改
 	
