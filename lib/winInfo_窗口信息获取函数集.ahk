@@ -33,8 +33,17 @@ wIDls		(title,			ECT := "")		【所有符合条件"ahk_ID " 字符串列表】
 
 			参一、定位条件 	参二、排除条件	返回字符串
 
-wgPName		(title,			ECT := "")		【程序名称】
+wgPName		(,			ECT := "")		【程序名称】
 wgLP		(title,			ECT := "")		【程序对应长路径】
+
+		====================================================================
+		----> 窗口标题及组设置
+		====================================================================
+wsetT(title, newT, ETC := "" )	;设置新窗口标题，成功返回新窗口标题
+wadGroup(title, groupName,  ETC := "" )	;将标题加入窗口组
+WTSTAG(title, groupName, newPerT := "new", ETC := "", msgGroupInfo := 0)	;将所有符合窗口标题的窗口改变标题名称加入到组中
+wgGroupList(AHKgroupname)	;返回窗口组所有成员ID列表
+
 
 。。。基于鼠标悬停位置的获取
 
@@ -106,37 +115,69 @@ msFLP() {
 	return % wgLP(mgID())
 }
 
+wgGroupList(AHKgroupname) {
+	LS := wIDls(AHKgroupname)
+	if !LS.MaxIndex()
+		return 0
+	else
+		return % LS
+}
+
+WTSTAG(title, groupName, newPerT := "new", ETC := "", msgGroupInfo := 0) {
+	if !(wExist(title, ECT))
+		return 0
+	loop {
+		if !(wExist(title, ECT))
+			break
+		wadGroup(title, groupName, newPerT)
+	}
+	return % "ahk_group " groupName
+}
+
+wadGroup(title, groupName,  ETC := "" ) {
+	if !(wExist(title, ECT))
+		return 0
+	GroupAdd, % groupName, % title, , , % ETC
+	return % "ahk_group " groupName
+}
+
+wsetT(title, newT, ECT := "") {
+	if !(wExist(title, ECT))
+		return 0
+	WinSetTitle, % title, , % newT, % ECT
+	return % newT
+}
 
 ;--> .根据特定标题参数 【确认窗口是否存在】
-wExist(title) {
-	if WinExist(title)
+wExist(title, ECT := "") {
+	if WinExist(title, ECT)
 		return 1
 	return 0
 }
 ;--> .根据特定标题参数 【获取title字符串】
 wgTitle(title, ECT := "") {
-	if !(wExist(title))
+	if !(wExist(title, ECT))
 		return 0
 	WinGetTitle, out,  % title, , % ECT
 	return % out
 }
 ;--> .根据特定标题参数 【获取ahk_ID】
 wgID(title, ECT := "") {
-	if !(wExist(title))
+	if !(wExist(title, ECT))
 		return 0
 	WinGet, ahkID, ID, % title, ,% ECT
 	return % "ahk_ID " ahkID
 }
 ;--> .根据特定标题参数 【获取ahk_Class】
 wgClass(title, ECT := "") {
-	if !(wExist(title))
+	if !(wExist(title, ECT))
 		return 0
 	WinGetClass, aa, % title, , % ECT
 	return % "ahk_Class " aa
 }
 ;--> .根据特定标题参数 【获取ahk_PID】
 wgPID(title, ECT := "") {
-	if !(wExist(title))
+	if !(wExist(title, ECT))
 		return 0
 	WinGet, ahkPID, PID, % this.SL, ,% this.SLEC
 	return % "ahk_PID " ahkPID	
@@ -150,14 +191,14 @@ wgEXE(title, ECT := "") {
 
 ;--> .根据特定标题参数 【获取窗口对应程序名称】
 wgPName(title, ECT := "") {
-	if !(wExist(title))
+	if !(wExist(title, ECT))
 		return 0
 	WinGet, name, ProcessName, % title, ,% ECT
 	return % name		
 }
 ;--> .根据特定标题参数 【获取窗口对应程序完整路径】
 wgLP(title, ECT := "") {
-	if !(wExist(title))
+	if !(wExist(title, ECT))
 		return 0
 	WinGet, pathx, ProcessPath , % title, ,% ECT
 	return % pathx		
@@ -177,7 +218,7 @@ allwIDls() {	;返回所有系统当前存在的窗口ID列表
 
 
 wIDls(title, ECT := "") {	;返回符合标题类型判定参数的窗口id列表
-	if !(wExist(title))
+	if !(wExist(title, ECT))
 		return 0
 	IDls := []
 	WinGet, out, List, % title, ,% ECT

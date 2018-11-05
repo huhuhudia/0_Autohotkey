@@ -25,3 +25,4 @@ clip_got()
 	ClipWait
 	return %Clipboard%
 }
+
