@@ -3,10 +3,10 @@
 #Persistent
 CoordMode, tooltip, screen
 
-	;testFilepath = % A_ScriptDir "\" lineList.txt	;测试文件名称
-	testFilepath := % A_ScriptFullPath	;*****以本脚本内容为例，可更改
+	testFilepath = % A_ScriptDir "\lineList.txt"	;测试文件名称
+	;testFilepath := % A_ScriptFullPath	;*****以本脚本内容为例，可更改
 
-	global linenum := 20	;*****设定显示行数,决定焦点位置，可以更改
+	global linenum := 6	;*****设定显示行数,决定焦点位置，可以更改
 
 	global cliplist := FlLiToList(testFilepath)	;创建粘粘列表
 	global maxIlength := StrLen(cliplist.MaxIndex())	;列表极限数量字符长度
@@ -61,13 +61,13 @@ tooltip:
 	show2 = 2
 	if	cliplist.MaxIndex()	{ ;若列表不为空，显示排版
 		;若上一次显示的内容与此次 相同，不显示ToolTip
-		ToolTip, % tooltex, 0, 0
+		ToolTip, % tooltex, 1488, 600
 		WinSet, TransColor, Color [N], WinTitle
 
 		extext := tooltex
 	}
 	else
-		ToolTip, [黏贴列表为空], 0, 0
+		ToolTip, [黏贴列表为空], 1488, 600
 return
 
 maketoollist() {	;设定tooltip排版
