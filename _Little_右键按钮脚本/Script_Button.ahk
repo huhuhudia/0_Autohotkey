@@ -9,7 +9,12 @@ return
 dd = #include `%A_ScriptDir`%\
 clip_in(dd)
 return
-
+f6::
+	winget, IDD, ID, A
+	WinGetPos, , , WW, HH, ahk_id %IDD%
+	WinMove, ahk_id %IDD%, , % (a_screenwidth - WW) / 2, % (A_ScreenHeight - HH) / 2
+	
+return
 
 /* =========================================================================================
 									GUI右键功能列表
