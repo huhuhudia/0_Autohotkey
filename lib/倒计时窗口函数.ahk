@@ -1,4 +1,4 @@
-﻿;eg：CtDwGC(5)
+﻿; CtDwGC(5) 唯一参数，等待秒数
 
 CtDwGC(__waitingSec) {
 	__startTNow := A_Now
