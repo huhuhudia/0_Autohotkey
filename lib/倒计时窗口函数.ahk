@@ -1,4 +1,8 @@
-﻿; CtDwGC(5) 唯一参数，等待秒数
+﻿/*
+以秒值为单位
+CtDwGC(5) ; 唯一参数，等待秒数
+*/
+
 
 CtDwGC(__waitingSec) {
 	__startTNow := A_Now
@@ -38,6 +42,9 @@ NMsecSubt(tmlsA, tmlsB) {	;计算两时间点列表值的差
 		return % (tmlsA[2] - tmlsB[2]) / 1000
 }
 /*
+弃用代码：
+	以两个独立窗口代替进度条控件的背景和进度条
+
 CtDwGUI(waitingSec) {
 	
 	startTNow := A_Now

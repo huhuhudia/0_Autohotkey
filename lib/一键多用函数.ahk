@@ -1,26 +1,10 @@
-﻿#SingleInstance force
-#Persistent
-
-f1::
-	KCLable("F1", f1func_dict, ["消息1", "消息2", "消息3", "消息4", "消息5"])
-	return
-
-消息1:
-消息2:
-消息3:
-消息4:
-消息5:
-	MsgBox, % A_ThisLabel
-	return
-
-/*
-功能描述：
+﻿/*
+* 功能描述：
 	短击设定按键显示功能项目
 	长按选择功能
 	超时退出
 
-主函数：
-
+* 主函数：
 	KCLable() __ Key Chose Lable
 		参1：keyname_str			待激活的按键，为字符串
 		参2：choscount_dict		设定用以统计列表功能选择次数的字典，酌情舍去
@@ -30,16 +14,27 @@ f1::
 		其他：无返回值
 	
 	
-子函数:
-1.LsToStr(lablefunc_list, focusline_int) ：	不可复用，将列表转换为行格式的多行字符串返回，用于tooltip	 
-	
-2.NMsecSubt(tmlsA, tmlsB)： 				可复用，以列表方式时间计算函数，计算系统时间差，用以判断按键按击时间
-	
-3.sortDicToLs(thels, byref __diccount)：	修改后可复用，将字典键的值以从大到小顺序排列为列表，输出该列表
+* 子函数:
+	1.LsToStr(lablefunc_list, focusline_int) ：	不可复用，将列表转换为行格式的多行字符串返回，用于tooltip	 
+	2.NMsecSubt(tmlsA, tmlsB)： 				可复用，以列表方式时间计算函数，计算系统时间差，用以判断按键按击时间
+	3.sortDicToLs(thels, byref __diccount)：	修改后可复用，将字典键的值以从大到小顺序排列为列表，输出该列表
+	4.varInlist(var, ls)：						可复用，判断值是否在列表中	
 
-4.varInlist(var, ls)：						可复用，判断值是否在列表中	
+
+* 参考代码：
+
+	f1::
+		KCLable("F1", f1func_dict, ["消息1", "消息2", "消息3", "消息4", "消息5"])
+		return
+
+	消息1:
+	消息2:
+	消息3:
+	消息4:
+	消息5:
+		MsgBox, % A_ThisLabel
+		return
 */
-
 
 KCLable(keyname_str, ByRef choscount_dict,lablefunc_strlist, waitsec_int := 1, chosgototm_int := 200) {		;主函数
 	foucs_int := 1	;每次按键初始焦点位置
@@ -165,10 +160,3 @@ varInlist(var, ls) {
 	}
 	return 0
 }
-
-
-
-
-
-
-

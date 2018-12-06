@@ -15,7 +15,7 @@
 		4. *** 列表中某位插入列表
 			lsInserE(ByRef lsName, index, insertList)
 		
-		5. ***  类似range列表生成
+		5. ***  类似range列表生成，步进1
 			lsRange(0, 5)
 		
 	删除元素：
