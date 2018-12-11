@@ -6,11 +6,12 @@
 
 * 主函数：
 	KCLable() __ Key Chose Lable
-		参1：keyname_str			待激活的按键，为字符串
-		参2：choscount_dict		设定用以统计列表功能选择次数的字典，酌情舍去
-		参3：lablefunc_strlist 	选择标签的列表，为字符串列表
-		参4：waitsec_int 		超时未切换或未选择退出，单位为妙，可为浮点数, 默认值2
+		参1:keyname_str			待激活的按键，为字符串
+		参2:choscount_dict		设定用以统计列表功能选择次数的字典，酌情舍去
+		参3:lablefunc_strlist 	选择标签的列表，为字符串列表
+		参4:waitsec_int 		超时未切换或未选择退出，单位为妙，可为浮点数, 默认值2
 		参5:chosgototm_int 		长按选择功能时间，单位毫秒, 默认值300
+		参6:longkeydown			长按超时自动选择时间,单位秒，默认值0.7
 		其他：无返回值
 	
 	
@@ -36,7 +37,7 @@
 		return
 */
 
-KCLable(keyname_str, ByRef choscount_dict,lablefunc_strlist, waitsec_int := 1, chosgototm_int := 200) {		;主函数
+KCLable(keyname_str, ByRef choscount_dict,lablefunc_strlist, waitsec_int := 1, chosgototm_int := 200, longkeydown := 0.7) {		;主函数
 	foucs_int := 1	;每次按键初始焦点位置
 	;*** 功能选择次数统计点1 ***
 	lablefunc_strlist := sortDicToLs(lablefunc_strlist, choscount_dict)
@@ -50,10 +51,16 @@ KCLable(keyname_str, ByRef choscount_dict,lablefunc_strlist, waitsec_int := 1, c
 		}
 		else {
 			__noww := [A_Now, A_MSec]
-			keywait, % keyname_str
+			keywait, % keyname_str, LT%longkeydown%
+			if errorlevel {		;长按超过1秒，为长按状态
+				__gotPE := (longkeydown * 1000)
+			}
 			;长按时选择功能后退出
-			__gotsince := [A_Now, A_MSec]
-			__gotPE := NMsecSubt(__gotsince, __noww)
+			else {				;未
+				__gotsince := [A_Now, A_MSec]
+				__gotPE := NMsecSubt(__gotsince, __noww)
+			}
+			
 			if (__gotPE >= chosgototm_int) {
 				gosub, % lablefunc_strlist[foucs_int]
 				;*** 功能选择次数统计点2 ***
