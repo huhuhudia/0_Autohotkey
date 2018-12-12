@@ -1,21 +1,22 @@
 ﻿#SingleInstance FORCE
 #Include %a_scriptdir%\winInfo_窗口信息获取函数集.ahk
 
-gui, add, listbox, w200 H300 vlb glb HScroll500
+gui, add, listbox, w200 	H300 	vlb 	glb 	HScroll500
 
-GUI, add, edit, w200 vwinid ReadOnly
-GUI, add, edit, w200 vtitleit ReadOnly
-GUI, add, edit, w200 vclassit ReadOnly
-GUI, add, edit, w200 vexeit ReadOnly
-GUI, add, edit, w200 vpidit ReadOnly
-GUI, add, edit, w200 vwinlongpath ReadOnly
-GUI, add, edit, w200 vwinpos ReadOnly
-GUI, add, edit, w200 vfwei ReadOnly
+GUI, add, edit, w200 vwinid			ReadOnly
+GUI, add, edit, w200 vtitleit		ReadOnly
+GUI, add, edit, w200 vclassit 		ReadOnly
+GUI, add, edit, w200 vexeit 		ReadOnly
+GUI, add, edit, w200 vpidit 		ReadOnly
+GUI, add, edit, w200 vwinlongpath 	ReadOnly
+GUI, add, edit, w200 vwinpos 		ReadOnly
+GUI, add, edit, w200 vfwei 			ReadOnly
+
 GUI, add, text, , 注1:双击激活窗口并显示范围
 GUI, add, text, , 注2:Esc取消范围显示
 
-gui,add, button, w200 grenewlb, F5 刷新
-gui,add, button, w200 gopenpath, 打开对应窗口路径文件夹
+gui,add, button, w200 grenewlb	, F5 刷新
+gui,add, button, w200 gopenpath	, 打开对应窗口路径文件夹
 
 gui, +toolwindow +AlwaysOnTop +Border
 alphawin = thealphawindowgui
@@ -30,7 +31,7 @@ for i in listid
 		GuiControl, , lb, % listid[i] " <-> " wgTitle(listid[i])
 	}
 }
-gui, show, x2000 y150
+gui, show
 return
 
 lb:
@@ -38,13 +39,13 @@ lb:
 	GuiControlGet, lb, , lb
 	RegExMatch(lb, "(*UCP)^(\w+\s\w+)", it)
 	GuiControl, , winid, % it
-	GuiControl, , titleit, % wgTitle(lb)
-	GuiControl, , classit, % wgClass(lb)
-	GuiControl, , exeit, % wgEXE(lb)
-	GuiControl, , pidit, % wgPID(lb)
-	GuiControl, , winlongpath, % wgLP(lb)
+	GuiControl, , titleit, % wgTitle(it)
+	GuiControl, , classit, % wgClass(it)
+	GuiControl, , exeit, % wgEXE(it)
+	GuiControl, , pidit, % wgPID(it)
+	GuiControl, , winlongpath, % wgLP(it)
 	
-	WinGetPos, xx, yy, ww, hh, % winid
+	WinGetPos, xx, yy, ww, hh, % it
 	GuiControl, , winpos, % "x := " xx " ,y := " yy 
 	GuiControl, , fwei, % "w := " ww " ,h := " hh
 	if (A_GuiControlEvent == "DoubleClick") {
@@ -78,7 +79,7 @@ lb:
 	
 创建显示GUI:
 	if not winexist(winid) {
-		MsgBox, , 窗口不存在, 即将刷新窗口列表, 2000
+		MsgBox, , 窗口不存在, 即将刷新窗口列表, 1
 		gosub, renewlb
 		return
 	}

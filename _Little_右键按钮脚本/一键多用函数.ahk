@@ -78,6 +78,8 @@ KCLable(keyname_str, ByRef choscount_dict,lablefunc_strlist, waitsec_int := 1, c
 			}
 		}		
 	}
+	keywait, % keyname_str
+	return
 }
 
 LsToStr(lablefunc_list, focusline_int) { 	;将列表设置为某种格式

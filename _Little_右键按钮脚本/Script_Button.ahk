@@ -17,8 +17,8 @@ f6::
 	
 return
 
-F12::
-KCLable("F12", f1func_dict, ["窗口工具", "测试"])
+F3::
+KCLable("F3", f1func_dict, ["窗口工具", "测试"])
 return
 
 窗口工具:
