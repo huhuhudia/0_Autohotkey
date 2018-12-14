@@ -1,4 +1,4 @@
-﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-; #Warn  ; Enable warnings to assist with detecting common errors.
-SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
-SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+﻿ string := "天"
+a := RegExmatch(string, "[\x{4E00}-\x{9FA5}]")
+MsgBox % a  ;含有中文字符 返回非0数 ，不含中文 ，返回0
+

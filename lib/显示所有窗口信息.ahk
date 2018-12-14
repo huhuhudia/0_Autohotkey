@@ -31,7 +31,8 @@ for i in listid
 		GuiControl, , lb, % listid[i] " <-> " wgTitle(listid[i])
 	}
 }
-gui, show
+gui_x := (A_ScreenWidth -300)
+gui, show, x%gui_x% y80
 return
 
 lb:
