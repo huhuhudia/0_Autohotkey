@@ -22,7 +22,7 @@
 
 
 * 参考代码：
-
+*/
 	f1::
 		KCLable("F1", f1func_dict, ["消息1", "消息2", "消息3", "消息4", "消息5"])
 		return
@@ -34,7 +34,7 @@
 	消息5:
 		MsgBox, % A_ThisLabel
 		return
-*/
+
 
 KCLable(keyname_str, ByRef choscount_dict,lablefunc_strlist, waitsec_int := 1, chosgototm_int := 200) {		;主函数
 	foucs_int := 1	;每次按键初始焦点位置
