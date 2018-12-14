@@ -1,4 +1,7 @@
 ﻿/*
+* 作者qq：365947335 (虚荣)
+* 留言: 有bug烦请联系我
+
 * 功能描述：
 	短击设定按键显示功能项目
 	长按选择功能
@@ -6,13 +9,16 @@
 
 * 主函数：
 	KCLable() ：Key Chose Lable
-		参1:keyname_str			* 待激活的按键，为字符串
-		参2:choscount_dict		* 设定用以统计列表功能选择次数的字典，作全局变量,取任意可用标识符
-		参3:lablefunc_strlist 	* 选择标签的列表，为字符串列表
-		参4:waitsec_int 		超时未切换或未选择退出，单位为妙，可为浮点数, 默认值2
-		参5:chosgototm_int 		长按选择功能时间，单位毫秒, 默认值300
-		参6:longkeydown			长按超时自动选择时间,单位秒，默认值0.7
+		已舍去参数: keyname_str	待激活的按键，为字符串，高级群 fwt同志建议
+		参1:choscount_dict		* 设定用以统计列表功能选择次数的字典，作全局变量,取任意可用标识符
+		参2:lablefunc_strlist 	* 选择标签的列表，为字符串列表
+		参3:waitsec_int 		超时未切换或未选择退出，单位为妙，可为浮点数, 默认值2
+		参4:chosgototm_int 		长按选择功能时间，单位毫秒, 默认值300
+		参5:longkeydown			长按超时自动选择时间,单位秒，默认值0.7
 		其他：无返回值
+
+* 已知bug：
+	多个功能键在超时时间内多次无序键击将导致流程冲突，可能会同时启动零至多个按键的单功能项
 	
 	
 * 子函数:
@@ -24,12 +30,8 @@
 * 参考代码：
 
 	f1::
-		KCLable("F1", lbdict_F1, ["消息1", "消息2", "消息3", "消息4", "消息5"])
+		KCLable(lbdict_F1, ["消息1", "消息2", "消息3", "消息4", "消息5"])
 		return
-
-	f2::	
-		KCLable("F2", lbdict_F2, ["消息6", "消息7", "消息8", "消息9"])
-		return	
 
 	消息1:
 	消息2:
@@ -39,17 +41,22 @@
 		MsgBox, % A_ThisLabel
 		return
 
-		
+	f2::	
+		KCLable(lbdict_F2, ["消息6", "消息7", "消息8", "消息9"])
+		return			
 	消息6:
 	消息7:
 	消息8:
 	消息9:		
 		MsgBox, % A_ThisLabel
 		return		
-		
 */
 
-KCLable(keyname_str, ByRef choscount_dict,lablefunc_strlist, waitsec_int := 1, chosgototm_int := 200, longkeydown := 0.7) {		;主函数
+
+
+KCLable(ByRef choscount_dict,lablefunc_strlist, waitsec_int := 1, chosgototm_int := 200, longkeydown := 0.7) {		;主函数
+	;* keyname_str 为触发的按键
+	keyname_str := A_ThisHotkey
 	;* foucs_int每次按键初始焦点位置,为常量
 	foucs_int := 1	
 	;* sortDicToLs 字典为空，将列表录入字典，字典不为空，将字典键以键值大小降序排列
