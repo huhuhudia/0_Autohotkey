@@ -22,7 +22,7 @@
 	4.varInlist(var, ls)：						可复用，判断值是否在列表中	
 
 * 参考代码：
-*/
+
 	f1::
 		KCLable("F1", lbdict_F1, ["消息1", "消息2", "消息3", "消息4", "消息5"])
 		return
@@ -38,9 +38,6 @@
 	消息5:
 		MsgBox, % A_ThisLabel
 		return
-<<<<<<< HEAD
-
-=======
 		
 	消息6:
 	消息7:
@@ -50,7 +47,6 @@
 		return		
 		
 */
->>>>>>> 3f2318fdc50fcbb40f84d48d8e1423f6f498d0db
 
 KCLable(keyname_str, ByRef choscount_dict,lablefunc_strlist, waitsec_int := 1, chosgototm_int := 200, longkeydown := 0.7) {		;主函数
 	;* foucs_int每次按键初始焦点位置,为常量

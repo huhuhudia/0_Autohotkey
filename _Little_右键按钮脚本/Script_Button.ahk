@@ -1,5 +1,6 @@
 ﻿#Include %A_ScriptDir%\WinPath.ahk
 #Include %A_ScriptDir%\Clipboard_复制黏贴.ahk
+#Include %A_ScriptDir%\一键多用函数.ahk
 #NoEnv
 #SingleInstance FORCE
 	if !fileexist(A_SCRIPTDIR "\Script_Button_List")
@@ -14,6 +15,17 @@ f6::
 	WinGetPos, , , WW, HH, ahk_id %IDD%
 	WinMove, ahk_id %IDD%, , % (a_screenwidth - WW) / 2, % (A_ScreenHeight - HH) / 2
 	
+return
+
+F3::
+KCLable("F3", f1func_dict, ["窗口工具", "测试"])
+return
+
+窗口工具:
+run, C:\Users\UOLO\Desktop\0_Autohotkey\lib\显示所有窗口信息.ahk
+return
+测试:
+
 return
 
 /* =========================================================================================
