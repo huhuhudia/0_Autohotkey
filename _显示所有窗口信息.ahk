@@ -1,5 +1,5 @@
 ﻿#SingleInstance FORCE
-#Include %a_scriptdir%\lib\winInfo_窗口信息获取函数集.ahk
+#Include %a_scriptdir%\lib\窗口_窗口信息获取函数集.ahk
 
 gui, add, listbox, w200 	H300 	vlb 	glb 	HScroll500
 
