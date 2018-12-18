@@ -23,8 +23,8 @@ CtDwGC(__waitingSec) {
 	Gui, __countdownGUI:show, x%__x% y%__y% w%__w% h%__h%
 	loop {	;计算剩余时间并改变进度条长度
 		__noww := [A_Now, A_MSec]
-		__wide := Floor(NMsecSubt(__noww, __startT) * __perMSecWide)
-		if (NMsecSubt(__noww, __stopT) < 0) 
+		__wide := Floor(__NMsecSubt(__noww, __startT) * __perMSecWide)
+		if (__NMsecSubt(__noww, __stopT) < 0) 
 			GuiControl, ,  __MycountdownProgress, % __wide
 		else
 			break
@@ -33,7 +33,7 @@ CtDwGC(__waitingSec) {
 	return 0 	;省略段：将进度条置于百分百长度 GuiControl,, __MyProgress, 100
 }
 
-NMsecSubt(tmlsA, tmlsB) {	;计算两时间点列表值的差
+__NMsecSubt(tmlsA, tmlsB) {	;计算两时间点列表值的差
 	subSVar := tmlsA[1]
 	subSVar -= tmlsB[1], s	;两数相减的秒数
 	if (subVar != 0) 
