@@ -1,0 +1,12 @@
+AP=1
+BP=1
+CP=1
+DP=0
+EP=0
+FP=0
+GP=0
+HP=0
+IP=0
+JP=0
+KP=0
+LP=0
