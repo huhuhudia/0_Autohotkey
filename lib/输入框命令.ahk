@@ -1,54 +1,23 @@
 ﻿;双击右键按住不放，输入b,松开鼠标右键发送box
-
 #SingleInstance FORCE
-;以下两个必须参数，不可舍，不可调换位置
-global isfirstRuning_bool := true
-global 按键字典 := {}
 
-/*=======================================================
- * 基本代码格式说明
-========================================================= 
+global 按键字典 :=  {"b" : "box"
+, "c" : "功能2"}
 
-标签名:
-if LB("启用输入,  "标签名") {
-    ....代码块
-    return
-}
-*/
+return
 
-;=========================================================
-;功能代码块此处开始
-;=========================================================
+
 box:
-if LB("c", "box") {
-    /*
     Send ^{f}
     Clipboard=box
     Send ^{v}
     Send {down}
     Send `n
-    */
-    MsgBox, 1
     return
-}
 
 功能2:
-if LB("b" ,"功能2") 
-{
     msgbox, 666
     return
-}
-
-;=========================================================
-;功能代码块此处结束
-;=========================================================
-isfirstRuning_bool := false
-return
-
-
-
-
-
 
 
 
@@ -64,7 +33,7 @@ return
     WinClose, myRun
     return
 
-;#IfWinActive Untitled - Autodesk 3ds Max 2018    
+#IfWinActive Untitled - Autodesk 3ds Max 2018    
 
 RButton::
     KeyWait, RButton  
@@ -93,24 +62,13 @@ dicttolable(the_key) {
     aaa := 按键字典[the_key]
     if !aaa
     {
-        traytip, , % "命令" the_key "不在命令列表中", 1
+        traytip, , % "命令" the_key "不在命令列表中"
     }
     else
         gosub, % 按键字典[the_key]
     return
 }
-
-LB(theintokey_str, intodictlable_str) {
-	if isfirstRuning_bool
-	{
-		按键字典[theintokey_str] := intodictlable_str
-		return 0
-	}
-	else
-		return 1
-}
-
-
+    
 showgui() {
     
     global
