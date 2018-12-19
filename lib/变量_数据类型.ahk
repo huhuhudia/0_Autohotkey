@@ -1,5 +1,7 @@
 ﻿;根据输入的数据，输出数据类型的字符串
-
+ZIFU := 
+ZIFU.Insert(1)
+msgbox, % ZIFU.MaxIndex()
 
 typeof(thevar) {
 	if ((!thevar) && (thevar!= 0))
