@@ -1,6 +1,16 @@
 ﻿
+
+递归移动文件(fromdir, todir) {
+	;将一个文件夹下的所有文件(递归)，移动到另一个文件夹
+	Loop, % fromdir . "\*", , 1
+		{
+			FileMove, % A_LOOPFILELONGPATH , % todir . "\" . A_Index . "-" . A_LoopFileName
+		}
+	}
+
 ;文件创建 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-Cre_EpFi(filLP) { ;创建空白  文件  ,若存在文件，不动作
+Cre_EpFi(filLP) {
+	;创建空白  文件  ,若存在文件，不动作
 	IfNotExist, % filLP
 	{
 		FileAppend, , % filLP, UTF-8
@@ -10,15 +20,17 @@ Cre_EpFi(filLP) { ;创建空白  文件  ,若存在文件，不动作
 		}
 	}
 }
-Cre_EpFd(fodLP) { ;创建空白  文件夹  ，若存在文件夹，则不动作
+
+Cre_EpFd(fodLP) {
+	;创建空白  文件夹  ，若存在文件夹，则不动作
 	IfNotExist, % fodLP
-	{
+		{
 		FileCreateDir, % fodLP
 		Loop {
 			IfExist, % fodLP
 				Break
+			}
 		}
-	}
 }
 Cre_AftDel(filLP) {	;创建文件前删除文件
 	Del_Fil(filLP)
