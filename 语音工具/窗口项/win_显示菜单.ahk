@@ -1,5 +1,4 @@
 ﻿#NoTrayIcon
-#singleinstance force
+#SingleInstance force
 FileReadLine, MENUID, % a_scriptdir "\win_ini\winmenu.txt" , 1	
-MENUID := "ahk_ID " MENUID
-
+WinShow, %MENUID%

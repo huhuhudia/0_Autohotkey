@@ -1,4 +1,5 @@
-;´ò¿ªµ±Ç°¼¤»î´°¿ÚµÄ³ÌĞòÂ·¾¶
+ï»¿#NoTrayIcon
+;æ‰“å¼€å½“å‰æ¿€æ´»çª—å£çš„ç¨‹åºè·¯å¾„
 
 #singleinstance force
 
@@ -8,7 +9,7 @@ run, % strFulltDir(pathx)
 
 
 strFulltDir(STRIN) {
-	;»ñÈ¡ÎÄ¼şÂ·¾¶
+	;è·å–æ–‡ä»¶è·¯å¾„
 	FL := []
 	Loop, Parse, % STRIN, `\
 		FL.Insert(A_LoopField)

@@ -1,11 +1,12 @@
+ï»¿#NoTrayIcon
 #singleinstance force
 
 WinGet, NowWinID, ID, A
 NowWinID := % "ahk_ID " NowWinID
 WinGetPos, , , , WH, %NowWinID%
 
-FileReadLine, MENUID, % a_scriptdir "\win_ini\winmenu.txt" , 1		;´ËÎª¶ÁÈ¡Ê¶±ğ´°¿ÚID
-WinGetPos, , menuY, menuW, menuH, %MENUID%	;´ËÎª²Ëµ¥À¸×ø±êĞÅÏ¢
+FileReadLine, MENUID, % a_scriptdir "\win_ini\winmenu.txt" , 1		;æ­¤ä¸ºè¯»å–è¯†åˆ«çª—å£ID
+WinGetPos, , menuY, menuW, menuH, %MENUID%	;æ­¤ä¸ºèœå•æ åæ ‡ä¿¡æ¯
 
 
 if ((menuY != 0 ) && (menuW = A_ScreenWidth))

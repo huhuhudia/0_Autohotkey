@@ -1,1 +1,2 @@
+﻿#NoTrayIcon
 #singleinstance force

@@ -1,5 +1,6 @@
+ï»¿#NoTrayIcon
 #singleinstance force
-;¾ÓÖĞµ±Ç°´°¿Ú
+;å±…ä¸­å½“å‰çª—å£
 WinGet, idit,  id, A
 winid := % "ahk_id " idit
 WinGetPos, , , ww, wh, % winid
