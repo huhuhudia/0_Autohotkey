@@ -59,6 +59,8 @@ mswinToTal()
 */
 
 
+
+
 wgToTal(title, ECT := "") {
 	if !(wExist(title))
 		return 0	
