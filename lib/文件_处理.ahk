@@ -1,5 +1,48 @@
 ﻿
 
+
+filesize_rtInt(fileLongPath)  {
+	FileGetSize, byteit , %fileLongPath%
+	return byteit
+}
+
+dirsize_rtLs(dirorfilelongPath, showTT := 1){
+	;返回1.尺寸2.文件数量3.占据磁盘比率列表
+	DriveGet, DriveSize_int,Cap, % dirorfilelongPath
+	if (byteit := filesize_rtInt(dirorfilelongPath) )
+		return [byteit, 1, afile / (DriveSize_int *  1024 * 1024)]
+	else {
+		loop, % nowget "\*", 0, 1
+		{
+			lenth_int := A_Index
+			lsbyte_int := filesize_rtInt(A_LoopFileLongPath)  
+			byteit += lsbyte_int
+			if showTT
+				ToolTip, % "文件个数：" lenth "`n实际尺寸：" byteit "byte"
+		}
+	}
+	tooltip
+	return [byteit, lenth_int, byteit / (DriveSize_int *  1024 * 1024)]
+}
+
+fileSize() {
+	;返回1.尺寸2.文件数量3.占据磁盘总量 列表
+	DriveGet, size,Cap, % nowget
+	FileGetSize, byteit , %nowget%
+	if (!byteit) {
+		;ToolTip, % lsbyte
+		
+		loop, % nowget "\*", 0, 1
+		{
+			lenth := A_Index
+			FileGetSize, lsbyte , % A_LoopFileLongPath
+			byteit += lsbyte
+			ToolTip, % "文件个数：" lenth "`n实际尺寸：" byteit "byte"
+		}
+	}
+	return []
+}
+
 递归移动文件(fromdir, todir) {
 	;将一个文件夹下的所有文件(递归)，移动到另一个文件夹
 	Loop, % fromdir . "\*", , 1
