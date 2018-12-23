@@ -1,7 +1,5 @@
 ﻿
 
-
-
 filesize_rtInt(fileLongPath)  {
 	;仅用于文件，返回文件大小
 	FileGetSize, byteit , %fileLongPath%
@@ -31,7 +29,8 @@ dirsize_rtLs(dirorfilelongPath, showTT := 1) {
 				ToolTip, % "当前文件: " A_LoopFileName "`n文件个数：" lenth_int "`n实际尺寸：" byteit "byte"
 		}
 	}
-	tooltip
+	IF showTT
+		tooltip
 	BFB := % (byteit / 1024 / 10.24 / DriveSize_int) . " %"
 	return [byteit, lenth_int, BFB]
 }
