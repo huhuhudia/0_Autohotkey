@@ -1,12 +1,21 @@
 ﻿
 
-NMsecSubt(tmlsA, tmlsB) {	;计算两时间点列表值的差,单位秒
+NSecSubt(tmlsA, tmlsB) {	;计算两时间点列表值的差,单位秒
 	subSVar := tmlsA[1]
 	subSVar -= tmlsB[1], s	;两数相减的秒数
 	if (subVar != 0) 
 		return % subSVar + ((tmlsA[2] - tmlsB[2]) / 1000)
 	else
 		return % (tmlsA[2] - tmlsB[2]) / 1000
+}
+
+NMsecSubt(tmlsA, tmlsB) {	;计算两时间点列表值的差,单位毫秒
+	subSVar := tmlsA[1]
+	subSVar -= tmlsB[1], s	;两数相减的秒数
+	if (subVar != 0) 
+		return % subSVar * 1000 + (tmlsA[2] - tmlsB[2])
+	else
+		return % tmlsA[2] - tmlsB[2]
 }
 
 /*

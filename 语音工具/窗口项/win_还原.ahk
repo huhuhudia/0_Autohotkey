@@ -1,0 +1,3 @@
+#singleinstance force
+
+WinRestore, A

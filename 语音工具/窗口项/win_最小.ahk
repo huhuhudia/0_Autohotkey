@@ -1,0 +1,3 @@
+#singleinstance force
+
+WinMinimize, A

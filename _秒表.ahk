@@ -25,7 +25,7 @@ space::
 	if ((!当前时间.MaxIndex()) or (当前计时 != 0))
 		计时时间 := [A_Now, A_MSec]
 	Loop {
-		当前计时 := 临时寄存时间 + NMsecSubt([A_Now, A_MSec], 计时时间)
+		当前计时 := 临时寄存时间 + NSecSubt([A_Now, A_MSec], 计时时间)
 		StringTrimRight, 当前计时, 当前计时, 3
 		guicontrol, ,当前计时, % 当前计时
 		if getkeystate("space", "p")

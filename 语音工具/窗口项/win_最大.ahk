@@ -1,0 +1,2 @@
+#singleinstance force
+WinMaximize, A

@@ -1,0 +1,2 @@
+alpha.txt	首行保存默认透明度
+winmenu.txt	首行保存系统菜单栏标题
