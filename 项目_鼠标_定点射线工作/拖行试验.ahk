@@ -10,10 +10,12 @@ MainPos_X := (A_ScreenWidth - MainPic_W) / 2
 MainPos_Y := 50
 
 ;~首要声明
+tagGUIID_list := []
 clickPos_list := []				;记录点击位置的列表，首位为拖行起点
-dragspeed_int := 20			;拖行速度，越低越快
+
+dragspeed_int := 0			;拖行速度，越低越快
 msmvspeed_int := 0			;返回原点速度,默认最快
-backsleep := 10					;拖行后返回原点的休憩时间
+backsleep_int := 0					;拖行后返回原点的休憩时间
 isnowjob_bool := false		;判定是否启动工作
 return
 
@@ -32,10 +34,21 @@ start_lable:
 
 Exitalltag_lable:
 	;* 退出工作功能
-	traytip, , 退出当前拖行工作, 1
+
 	clickPos_list := []
+	
 	isnowjob_bool := false
 	;* 关闭所有小标签窗口
+	traytip, , 退出当前拖行工作, 1
+	if (tagGUIID_list.MaxIndex())
+	{
+		for i in tagGUIID_list
+		{
+			thisGUI := tagGUIID_list[i]
+			gui, %thisGUI%:Destroy
+		}
+	}	
+	tagGUIID_list := []
 	;* 销毁当前脚本的窗口
 	theName_str := newgui_dir["name"]
 	if WinExist(theName_str)
@@ -54,6 +67,14 @@ LButton up::
 	MouseGetPos, xx, yy
 	nowclicklist := [xx, yy]
 	clickPos_list.Insert(nowclicklist)
+	thisTagName := % "workingtagGui" . clickPos_list.MaxIndex()
+	tagGUIID_list.insert(thisTagName)
+	tagPos_x := % xx - 10
+	tagPos_y := % yy - 10
+	if (clickPos_list.MaxIndex() = 1)
+		picOnlyAlphaGUI_rtStr(thisTagName, A_ScriptDir "\A.png", [tagPos_x,tagPos_y] , 200)
+	else
+		picOnlyAlphaGUI_rtStr(thisTagName, A_ScriptDir "\B.png", [tagPos_x,tagPos_y], 200) 
 	nowclicklist := 
 	;* 创建标签,以列表长度判断，首位为起始标签，其后为小标签
 	
@@ -71,10 +92,16 @@ Enter::
 	{
 			IF (clickPos_list.MaxIndex() = i) 
 				break
+			if backsleep_int
+				Sleep % backsleep_int
 			;* 关闭当前移动至的子标签窗口
 			MouseMove, % clickPos_list[1][1], % clickPos_list[1][2], %msmvspeed_int%
 			MouseClickDrag, l, % clickPos_list[1][1], % clickPos_list[1][2], % clickPos_list[i + 1][1], % clickPos_list[i + 1][2], %dragspeed_int%
-			Click, 1107 , 172
+			
+			thisdelGuiName := % "workingtagGui" . (i + 1)
+			;Click, 1198, 178
+			if WinExist(thisdelGuiName)
+				Gui, %thisdelGuiName%:Destroy
 			if (thishotkey_str() == "esc")
 				break
 	}
@@ -149,7 +176,7 @@ picOnlyAlphaGUI_rtStr(guiName_str :=  "picOnlyAlphaGUI", picLP_str := false, gui
 		;此为图片宽高获取
 		__PICWW := % guiName_str "picNameW"
 		__PICHH := % guiName_str "picNameH"
-		__PICWW := % %__PICWW% - syswinadwid_int
+		__PICWW := % %__PICWW% 
 		__PICHH := % %__PICHH% 
 		if not guiPos_list 
 			;无设定坐标时, 居中
