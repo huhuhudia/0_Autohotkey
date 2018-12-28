@@ -1,0 +1,1 @@
+﻿Run, % a_scriptdir

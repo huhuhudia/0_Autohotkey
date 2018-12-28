@@ -1,0 +1,2 @@
+﻿caret.fore=#FFFFFF
+caret.line.back=#444444

@@ -1,0 +1,1 @@
+ahk_Class WindowsForms10.Window.8.app.0.3b93019_r13_ad1
