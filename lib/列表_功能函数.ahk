@@ -194,16 +194,16 @@ lsDVall_rtInt(lsName, var) {
 	
 lsdelnone_rtBool(lsName) {
 	;删除列表中所有空值元素
-	lsbflen := lsName.MaxIndex()
-	loop, % (lsbflen) 
-		{
-		nowIndex := (lsName.lsbflen - A_Index + 1)
-		nowLoopVar := lsName[nowIndex]
+	lsLen_int:= lsName.MaxIndex()
+	loop, % (lsLen_int) 
+	{
+		nowIndex_int := (lsLen_int - A_Index + 1)	;当前查找
+		nowLoopVar := lsName[nowIndex_int]		;当前查找
 		if ((!nowLoopVar) && (nowLoopVar != 0)) {
-			
-			lsName.Remove(nowIndex)
+			tooltip, % nowIndex
+			lsName.Remove(nowIndex_int)
 			existNone_Bool := 1
 			}
-		}
-	return % (existNone_Bool ? 1 : 0)
+	}
+	return existNone_Bool
 }
