@@ -20,6 +20,7 @@
 			lsmaxi_rtInt(列表名)									>> 返回最大值
 			lsmini_rtInt(列表名)									>> 返回最小值
 			islistsame_rtBool(列表1, 列表2)						>> 判断两个 非混合元素(列表字典等) 组成的列表是否相等
+			isvarinlist_rtBool(值, 列表)							>> 判断值是否在列表中
 			
 	>> 删改 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 		[一般方法]
@@ -48,6 +49,19 @@
 		msgbox, % lsName[nowIndex]
 	}
 */
+
+
+isvarinlist_rtBool(var, listName_list) {
+	;~ 判断元素是否在列表中
+	if (listName_list.maxindex()) {
+		for i in listName_list
+		{
+			if (listName_list[i] = var)
+				return 1
+		}
+	}
+	return 0
+}
 
 lstostr_rtStr(lsName) {
 	;传入参数为0或空,返回0,
