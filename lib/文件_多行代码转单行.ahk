@@ -1,6 +1,6 @@
 /* 示例代码:
 f1::
-cmd=send, 111;send, 222
+cmd = send, 111;send, 222
 onelines_pro(cmd)
 return
  */

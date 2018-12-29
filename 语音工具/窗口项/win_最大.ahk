@@ -1,3 +1,6 @@
 ﻿#NoTrayIcon
 #singleinstance force
-WinMaximize, A
+WinGet, theid, id, a
+theid := % "ahk_id " theid
+WinRestore, % theid
+WinMaximize, % theid

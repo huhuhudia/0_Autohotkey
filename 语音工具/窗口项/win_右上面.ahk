@@ -4,7 +4,7 @@ if (!(themenugot_list := getMenuPos_rtDict()))	;~ 若菜单不存在，以全屏
 	themenugot_list := [0, 0, 0, A_ScreenWidth, A_ScreenHeight]
 
 x_int := themenugot_list[4] / 2
-y_int := themenugot_list[3]
+y_int := themenugot_list[3] / 2
 w_int := themenugot_list[4] / 2
 h_int := themenugot_list[5] / 2
 
