@@ -60,6 +60,21 @@ draglstols_pro(pos1_list, pos2_list, slept_int := 10) {
 	Sleep, % slept_int
 }
 
+Class miximg {
+	__New(objs_list) {
+		this.imgobjlist := []
+		for i in objs_list
+		{
+			objofnowloop_obj := objs_list[i]
+			this.imgobjlist.Insert(objofnowloop_obj)
+		}
+	}
+	
+	
+	
+}
+
+
 Class img {
 	__New(NameOrPath_str, searchrange_list, searchN_int := 10 , searchTC_str := false) {
 		;图片路径
