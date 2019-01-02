@@ -35,8 +35,15 @@ F1::
 		;三处皆找到时
 		toAllx_int := BRSTpos_list[1] + 13
 		
-		YStartpos_list := [YRSTpos_list[1] + 123， YRSTpos_list[2] + 37]
-		GStartpos_list := [GRSTpos_list[1] + 48， GRSTpos_list[2] + 37]	
+		
+		
+		
+		Ynewyit_int1 := % YRSTpos_list[2] + 37
+		Gnewyit_int1 := % GRSTpos_list[2] + 37
+
+		YStartpos_list := [YRSTpos_list[1] + 123, Ynewyit_int1]
+		GStartpos_list := [GRSTpos_list[1] + 48, Gnewyit_int1]
+
 		toB_1_list := [toAllx_int, BRSTpos_list[2]  + 37]
 		toB_2_list := [toAllx_int, BRSTpos_list[2]  + 87]
 		toB_3_list := [toAllx_int, BRSTpos_list[2]  + 114]
